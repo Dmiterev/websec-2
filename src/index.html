@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание университета</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Расписание занятий</h1>
+        
+        <div class="controls">
+            <select id="groupSelect" class="form-control">
+                <option value="" disabled selected>Выберите группу</option>
+            </select>
+    
+            <select id="weekPicker" class="form-control">
+                <option value="" disabled selected>Выберите неделю</option>
+            </select>
+        </div>
+    
+        <div id="currentWeekDisplay" class="current-week">Выберите неделю</div>
+    
+        <div class="color-legend">
+            <span class="legend-item">
+                <span class="color-circle green"></span> - Лекция
+            </span>
+            <span class="legend-item">
+                <span class="color-circle pink"></span> - Лабораторная
+            </span>
+            <span class="legend-item">
+                <span class="color-circle blue"></span> - Практика
+            </span>
+            <span class="legend-item">
+                <span class="color-circle dark-blue"></span> - Экзамен
+            </span>
+            <span class="legend-item">
+                <span class="color-circle turquoise"></span> - Консультация
+            </span>
+            <span class="legend-item">
+                <span class="color-circle orange"></span> - Другое
+            </span>
+        </div>
+    
+        <table class="schedule-table" id="scheduleTable">
+            <thead>
+                <tr></tr>
+            </thead>
+            <tbody id="scheduleBody"></tbody>
+        </table>
+    </div>
+    
+    
+    
+    
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

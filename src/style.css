@@ -1,0 +1,115 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: var(--primary-color);
+  }
+  
+  #weekInfo {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .form-control {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .schedule-table th,
+  .schedule-table td {
+    padding: 12px;
+    border: 1px solid #eee;
+  }
+  
+  .schedule-table th {
+    background-color: var(--primary-color);
+    color: white;
+  }
+  
+  .schedule-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .schedule-table tr:hover {
+    background-color: var(--secondary-color);
+  }
+  
+  .color-bar {
+      width: 5px;
+      height: calc(100% - 4px);
+      position: absolute;
+      left: -5px;
+  }
+  
+  .green { background-color: #c6efce; }
+  .pink { background-color: #ffc5c5; }
+  .blue { background-color: #add8e6; }
+  .orange { background-color: #ffd7b9; }
+  .dark-blue {background-color: #4649f3;}
+  .turquoise {background-color: #00BFFF;}
+
+  .color-legend {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.legend-item {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.color-circle {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+  
+  .schedule-table td div { position: relative; padding-left:15px; }
+
+  .current-week {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+  
+  @media (max-width:768px) { .controls { flex-direction :column;} }
+  
