@@ -3,29 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Расписание университета</title>
+    <title>Расписание преподавателя</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Расписание занятий</h1>
-        <div id="groupInfo"></div>
+        <h1 id="teacherHeader">Расписание преподавателя</h1>
         <div class="controls">
-            <select id="groupSelect" class="form-control">
-                <option value="" disabled selected>Выберите группу</option>
-            </select>
-    
             <select id="weekPicker" class="form-control">
                 <option value="" disabled selected>Выберите неделю</option>
             </select>
         </div>
-    
+
         <div class="week-navigation">
-            <button id="prevWeek" class="form-control week-button">Предыдущая неделя</button>
-            <div id="currentWeekDisplay" class="current-week">Выберите неделю</div>
-            <button id="nextWeek" class="form-control week-button">Следующая неделя</button>
+            <button id="prevWeek" class="form-control week-button">&lt; Предыдущая неделя</button>
+            <div id="currentWeekDisplay" class="current-week"></div>
+            <button id="nextWeek" class="form-control week-button">Следующая неделя &gt;</button>
         </div>
-    
+        
         <div class="color-legend">
             <span class="legend-item">
                 <span class="color-circle green"></span> - Лекция
@@ -46,18 +41,10 @@
                 <span class="color-circle orange"></span> - Другое
             </span>
         </div>
-    
-        <table class="schedule-table" id="scheduleTable">
-            <thead>
-                <tr></tr>
-            </thead>
-            <tbody id="scheduleBody"></tbody>
-        </table>
+        
+        <div id="teacherSchedule"></div>
     </div>
-    
-    
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="teacher.js"></script>
 </body>
 </html>
