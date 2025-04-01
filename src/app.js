@@ -20,18 +20,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         $('#groupSelect, #weekPicker').change(() => {
             const weekNumber = $('#weekPicker').val();
-            if (weekNumber) {
+            const selectedGroupId = $('#groupSelect').val();
+            if (weekNumber && selectedGroupId) {
                 updateCurrentWeekDisplay(weekNumber);
                 updateNavigationButtons(weekNumber);
-                loadSchedule();
+                updateBrowserHistory(selectedGroupId, weekNumber);
+                loadSchedule(selectedGroupId, weekNumber);
             }
         });
 
-        if (weekParam) {
+        if (weekParam && groupId) {
             $('#weekPicker').val(parseInt(weekParam, 10));
             updateCurrentWeekDisplay(weekParam);
             updateNavigationButtons(weekParam);
-            loadSchedule();
+            loadSchedule(groupId, weekParam);
         } else {
             updateNavigationButtons(1);
         }
@@ -46,19 +48,31 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         document.getElementById('prevWeek').addEventListener('click', () => {
             let currentWeek = parseInt($('#weekPicker').val(), 10);
+            const selectedGroupId = $('#groupSelect').val();
             if (currentWeek > 1) {
-                $('#weekPicker').val(currentWeek - 1).trigger('change');
+                currentWeek -= 1;
             } else {
-                $('#weekPicker').val(52).trigger('change');
+                currentWeek = 52;
+            }
+            $('#weekPicker').val(currentWeek).trigger('change');
+            if (selectedGroupId) {
+                updateBrowserHistory(selectedGroupId, currentWeek);
+                loadSchedule(selectedGroupId, currentWeek);
             }
         });
 
         document.getElementById('nextWeek').addEventListener('click', () => {
             let currentWeek = parseInt($('#weekPicker').val(), 10);
+            const selectedGroupId = $('#groupSelect').val();
             if (currentWeek < 52) {
-                $('#weekPicker').val(currentWeek + 1).trigger('change');
+                currentWeek += 1;
             } else {
-                $('#weekPicker').val(1).trigger('change');
+                currentWeek = 1;
+            }
+            $('#weekPicker').val(currentWeek).trigger('change');
+            if (selectedGroupId) {
+                updateBrowserHistory(selectedGroupId, currentWeek);
+                loadSchedule(selectedGroupId, currentWeek);
             }
         });
     });
@@ -121,13 +135,8 @@ function renderSchedule(dates, scheduleData, groupName, groupInfo) {
     );
 }
 
-async function loadScheduleData(week) {
+async function loadScheduleData(groupId, week) {
     let data = null;
-    const groupId = new URLSearchParams(window.location.search).get('groupId');
-    if (!groupId) {
-        alert('Не указан ID группы');
-        return;
-    }
 
     try {
         const response = await fetch(`/api/schedule?groupId=${groupId}&week=${week}`);
@@ -154,9 +163,8 @@ function getTeacherIdFromHtml(html) {
     return null;
 }
 
-function loadSchedule() {
-    const weekNumber = $('#weekPicker').val();
-    loadScheduleData(weekNumber);
+function loadSchedule(groupId, weekNumber) {
+    loadScheduleData(groupId, weekNumber);
 }
 
 function updateBrowserHistory(group, week) {
